@@ -1,28 +1,6 @@
 #include "electrolux_ac_component.h"
 #include "esphome/core/log.h"
 
-// Packet Structure:
-// | Offset | Size | Meaning                  |
-// | ------ | ---- | ------------------------ |
-// | 0      | 8    | Constant Header 11000011 |
-// | 8      | 3    | Swing                    |
-// | 11     | 5    | Temperature (C)          |
-// | 16     | 16   | Unused                   |
-// | 32     | 5    | Timer (unused)           |
-// | 37     | 3    | Fan Speed                |
-// | 40     | 5    | Timer (unused)           |
-// | 46     | 4    | Unused                   |
-// | 50     | 1    | Sleed (unused)           |
-// | 51     | 2    | Unused                   |
-// | 53     | 3    | Mode                     |
-// | 56     | 21   | Unused                   |
-// | 77     | 1    | On/Off                   |
-// | 78     | 1    | Timer On/Off             |
-// | 79     | 9    | Unused                   |
-// | 88     | 4    | Buttons (unused)         |
-// | 92     | 4    | Unused                   |
-// | 96     | 8    | Checksum                 |
-
 namespace esphome
 {
     namespace electrolux_ac
@@ -155,11 +133,11 @@ namespace esphome
 
         void ElectroluxClimate::setChecksum(uint8_t *arr) const
         {
-            auto checksum = 0u;
-            for (auto i = 0; i < 12; ++i)
+            uint8_t checksum = 0;
+            for (auto i = 0; i < PACKET_SIZE - 1; ++i)
                 checksum += reverse_bits(arr[i]);
 
-            arr[12] = reverse_bits((uint8_t)checksum);
+            arr[12] = reverse_bits(checksum);
         }
 
         void ElectroluxClimate::logPacket(uint8_t *arr) const

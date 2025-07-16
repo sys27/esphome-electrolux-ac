@@ -1,0 +1,23 @@
+esphome:
+  name: esp32
+  friendly_name: esp32
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+external_components:
+  - source:
+      type: git
+      url: https://github.com/sys27/esphome-electrolux-ac
+      ref: master
+    components: [electrolux_ac]
+
+remote_transmitter:
+  pin: GPIO25
+  carrier_duty_percent: 50%
+
+climate:
+  - platform: electrolux_ac
+    name: "Electrolux AC"
