@@ -64,7 +64,7 @@ namespace esphome
             arr[1] |= temp;
         }
 
-        void ElectroluxClimate::setFanSpeed(uint8_t *arr) const
+        void ElectroluxClimate::setFanSpeed(uint8_t *arr)
         {
             auto fanSpeed = this->fan_mode.value_or(climate::CLIMATE_FAN_LOW);
             if (fanSpeed == climate::CLIMATE_FAN_AUTO &&
@@ -72,6 +72,7 @@ namespace esphome
                  this->mode == climate::CLIMATE_MODE_FAN_ONLY))
             {
                 fanSpeed = climate::CLIMATE_FAN_LOW;
+                this->set_fan_mode_(fanSpeed);
             }
 
             uint8_t fanByte = 0;

@@ -33,7 +33,7 @@ namespace esphome
             void setConstHeader(uint8_t *arr) const;
             void setSwingMode(uint8_t *arr) const;
             void setTemp(uint8_t *arr) const;
-            void setFanSpeed(uint8_t *arr) const;
+            void setFanSpeed(uint8_t *arr);
             void setMode(uint8_t *arr) const;
             void setState(uint8_t *arr) const;
             void setChecksum(uint8_t *arr) const;
