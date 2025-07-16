@@ -104,7 +104,7 @@ namespace esphome
             uint8_t modeByte = 0;
             switch (this->mode)
             {
-            case climate::CLIMATE_MODE_AUTO:
+            case climate::CLIMATE_MODE_HEAT_COOL:
                 modeByte = 0b00000000;
                 break;
             case climate::CLIMATE_MODE_COOL:
