@@ -67,9 +67,18 @@ namespace esphome
         void ElectroluxClimate::setFanSpeed(uint8_t *arr)
         {
             auto fanSpeed = this->fan_mode.value_or(climate::CLIMATE_FAN_LOW);
+
+            // Auto fan is not supported in Dry and Fan modes, set to Low instead
             if (fanSpeed == climate::CLIMATE_FAN_AUTO &&
                 (this->mode == climate::CLIMATE_MODE_DRY ||
                  this->mode == climate::CLIMATE_MODE_FAN_ONLY))
+            {
+                fanSpeed = climate::CLIMATE_FAN_LOW;
+                this->set_fan_mode_(fanSpeed);
+            }
+
+            // In Dry mode, fan speed is always Low
+            if (this->mode == climate::CLIMATE_MODE_DRY)
             {
                 fanSpeed = climate::CLIMATE_FAN_LOW;
                 this->set_fan_mode_(fanSpeed);
