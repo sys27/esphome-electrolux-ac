@@ -47,8 +47,17 @@ namespace esphome
             arr[0] = 0b11000011;
         }
 
-        void ElectroluxClimate::setSwingMode(uint8_t *arr) const
+        void ElectroluxClimate::setSwingMode(uint8_t *arr)
         {
+            // Reset swing to default (vertical swing) when powering off
+            if (this->mode == climate::CLIMATE_MODE_OFF)
+            {
+                arr[1] = 0b11100000;
+                this->swing_mode = climate::CLIMATE_SWING_VERTICAL;
+
+                return;
+            }
+
             if (this->swing_mode != climate::CLIMATE_SWING_VERTICAL)
                 arr[1] = 0b11100000;
             else

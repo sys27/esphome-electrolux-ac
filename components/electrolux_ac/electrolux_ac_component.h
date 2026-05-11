@@ -31,7 +31,7 @@ namespace esphome
 
         private:
             void setConstHeader(uint8_t *arr) const;
-            void setSwingMode(uint8_t *arr) const;
+            void setSwingMode(uint8_t *arr);
             void setTemp(uint8_t *arr) const;
             void setFanSpeed(uint8_t *arr);
             void setMode(uint8_t *arr) const;
