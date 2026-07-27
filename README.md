@@ -6,6 +6,9 @@ This repository contains an external component that controls the Electrolux AC u
 
 - EXP26U339HW (tested)
 - EXP26U339CW (the same model as the previous one, but without the HEAT mode, you can disable HEAT in `yaml`)
+- EXP26U558CW (Tested by [@willharris](https://github.com/sys27/esphome-electrolux-ac/issues/2))
+- EXP28U340CW (Tested by [@mixomatoze](https://github.com/sys27/esphome-electrolux-ac/issues/3))
+- EXP34U338HW (Tested by [@stefantobiasiewicz](https://github.com/sys27/esphome-electrolux-ac/issues/1))
 - EXP34U339HW (untested but should work)
 
 _If you tested any other model and it works for you, please create a ticket, so I can update this list._
